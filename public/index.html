@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banana Brain — Mathematical Reasoning Puzzle Platform</title>
+  <meta name="description" content="A distributed mathematical reasoning puzzle challenge platform interoperating with Dr. Marc Conrad's Banana API. Build your streak and climb the leaderboard.">
+  
+  <!-- Design System Stylesheets -->
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="header">
+    <div class="container navbar">
+      <a href="/index.html" class="brand" id="brandLogo">
+        <span class="brand-icon">🍌</span>
+        <span>Banana<span class="brand-accent">Brain</span></span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="/index.html" class="nav-link active">Home</a></li>
+          <li><a href="/game.html" class="nav-link">Play Arena</a></li>
+          <li><a href="/leaderboard.html" class="nav-link">Leaderboard</a></li>
+          <li><a href="/profile.html" class="nav-link">Profile</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-auth" id="navAuthContainer">
+        <!-- Injected dynamically via ui.js -->
+        <a href="/login.html" class="btn btn-secondary btn-sm" id="navLoginBtn">Log In</a>
+        <a href="/register.html" class="btn btn-primary btn-sm" id="navRegisterBtn">Register</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    
+    <!-- Hero Section -->
+    <section class="hero container">
+      <div class="hero-pill">
+        <span>⚡ Powered by Dr. Marc Conrad's Banana API</span>
+      </div>
+
+      <h1 class="hero-title">
+        Master Algorithmic Puzzles with <span>Banana Brain</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        A distributed challenge platform designed for mathematical minds. Solve visual equation puzzles in real-time, maintain high streaks, and compete on the global leaderboard.
+      </p>
+
+      <div class="hero-actions">
+        <a href="/game.html" class="btn btn-primary btn-lg" id="heroPlayBtn">
+          <span>🍌 Play Arena Now</span>
+        </a>
+        <a href="/leaderboard.html" class="btn btn-secondary btn-lg" id="heroLeaderboardBtn">
+          <span>🏆 View Leaderboard</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Interactive Preview Demonstration Card -->
+    <section class="container" style="max-width: 800px; margin-bottom: var(--space-16);">
+      <div class="card card-glass" style="text-align: center; padding: var(--space-8);">
+        <span class="badge badge-gold" style="margin-bottom: var(--space-4);">Live Demonstration Fixture</span>
+        <h3>How Banana Equations Work</h3>
+        <p style="max-width: 500px; margin: 0 auto var(--space-6) auto;">
+          Each puzzle represents visual algebraic systems where bananas, monkeys, and fruit baskets represent digits (0–9). Deduce the final value before time runs out!
+        </p>
+
+        <div style="background: #FFFFFF; border-radius: var(--radius-lg); padding: var(--space-4); max-width: 480px; margin: 0 auto var(--space-4) auto; box-shadow: var(--shadow-lg);">
+          <img src="https://www.sanfoh.com/uob/banana/data/t7474a643b918bf0eb2b310f5b7n18.png" alt="Sample Banana Puzzle Demonstration" style="max-width: 100%; height: auto; display: block;" />
+        </div>
+        <span style="font-size: var(--font-size-xs); color: var(--text-muted);">
+          Real puzzles are fetched on-demand from the official endpoint without client-side solution leakage.
+        </span>
+      </div>
+    </section>
+
+    <!-- Core Features Section -->
+    <section class="features-section container">
+      <div class="section-header">
+        <h2>Engineered for Distributed Systems</h2>
+        <p>Built according to rigorous university engineering standards covering the four core assessment themes.</p>
+      </div>
+
+      <div class="grid-4">
+        <!-- Feature 1 -->
+        <div class="feature-card">
+          <div class="feature-icon">🌐</div>
+          <h4>Interoperability</h4>
+          <p>Seamless cross-boundary integration between Express REST APIs and Dr. Conrad's external Banana API service with fault tolerance.</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h4>Event-Driven</h4>
+          <p>Decoupled reactive architecture utilizing Node.js domain event emitters and frontend publish-subscribe buses for state transitions.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h4>Virtual Identity</h4>
+          <p>Cryptographic bcrypt password hashing, session regeneration to mitigate fixation, and strict server-side solution confidentiality.</p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h4>Version Control</h4>
+          <p>Disciplined, semantic version control tracking with reproducible migrations and fully automated integration test suites.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <span style="font-weight: 700; color: var(--text-primary);">Banana Brain</span> — University of Bedfordshire Distributed Systems Assignment
+      </div>
+      <ul class="footer-links">
+        <li><a href="/game.html">Play</a></li>
+        <li><a href="/leaderboard.html">Leaderboard</a></li>
+        <li><a href="/profile.html">Profile</a></li>
+        <li><a href="https://marcconrad.com/uob/banana/doc.php" target="_blank" rel="noopener">Banana API Docs</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { setupNavigation } from '/js/ui.js';
+    setupNavigation();
+  </script>
+</body>
+</html>
