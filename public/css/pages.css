@@ -1,0 +1,429 @@
+/**
+ * Banana Brain — Page-Specific Styles
+ */
+
+/* ====================================================================
+   1. Landing Page
+   ==================================================================== */
+.hero {
+  padding: var(--space-12) 0 var(--space-16) 0;
+  text-align: center;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: var(--radius-full);
+  color: var(--banana-400);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-6);
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin-bottom: var(--space-6);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-title span {
+  background: linear-gradient(135deg, var(--banana-300) 0%, var(--banana-500) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+  max-width: 650px;
+  margin: 0 auto var(--space-8) auto;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.features-section {
+  padding: var(--space-12) 0;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto var(--space-10) auto;
+}
+
+.feature-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  transition: all var(--transition-normal);
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-medium);
+  box-shadow: var(--shadow-xl);
+}
+
+.feature-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: var(--radius-lg);
+  background: rgba(245, 158, 11, 0.12);
+  color: var(--banana-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+}
+
+/* ====================================================================
+   2. Authentication Screens
+   ==================================================================== */
+.auth-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 12rem);
+  padding: var(--space-6) 0;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
+
+.auth-header h1 {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--space-2);
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: var(--space-6);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+/* ====================================================================
+   3. Game Arena (Play Screen)
+   ==================================================================== */
+.game-container {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* Game HUD */
+.game-hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: var(--space-4) var(--space-6);
+}
+
+.hud-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.hud-icon {
+  font-size: 1.5rem;
+}
+
+.hud-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.hud-label {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.hud-value {
+  font-size: var(--font-size-xl);
+  font-weight: 800;
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+}
+
+.hud-value.banana-accent {
+  color: var(--banana-400);
+}
+
+/* Timer Progress */
+.timer-bar-wrapper {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: var(--space-6);
+}
+
+.timer-bar {
+  height: 100%;
+  width: 100%;
+  background: var(--banana-400);
+  transition: width 1s linear, background-color 0.3s ease;
+}
+
+.timer-bar.warning {
+  background: #F97316;
+}
+
+.timer-bar.danger {
+  background: var(--danger);
+}
+
+/* Puzzle Stage */
+.puzzle-stage {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 380px;
+  box-shadow: var(--shadow-xl);
+  margin-bottom: var(--space-6);
+  overflow: hidden;
+}
+
+.puzzle-image-wrapper {
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: #FFFFFF;
+  padding: var(--space-4);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.puzzle-image {
+  max-width: 100%;
+  height: auto;
+  max-height: 320px;
+  display: block;
+  object-fit: contain;
+}
+
+/* Answer Input & Interactive Numpad */
+.answer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+  margin-top: var(--space-4);
+}
+
+.answer-input-container {
+  display: flex;
+  gap: var(--space-3);
+  width: 100%;
+  max-width: 420px;
+}
+
+.answer-input {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-2xl);
+  text-align: center;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  padding: 0.75rem 1rem;
+}
+
+.numpad-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-2);
+  width: 100%;
+  max-width: 420px;
+}
+
+.numpad-btn {
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  padding: var(--space-3);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.numpad-btn:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--banana-400);
+  color: var(--banana-400);
+  transform: translateY(-2px);
+}
+
+.numpad-btn:active {
+  transform: translateY(0);
+}
+
+/* Feedback Overlay */
+.feedback-banner {
+  margin-top: var(--space-4);
+  padding: var(--space-4) var(--space-6);
+  border-radius: var(--radius-xl);
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  animation: popIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.feedback-banner.correct {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid var(--success);
+  color: var(--success);
+}
+
+.feedback-banner.incorrect {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid var(--danger);
+  color: var(--danger);
+}
+
+.feedback-content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-weight: 700;
+  font-size: var(--font-size-base);
+}
+
+@keyframes popIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+
+.shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+/* ====================================================================
+   4. Leaderboard Page
+   ==================================================================== */
+.podium-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: var(--space-4);
+  margin: var(--space-8) 0 var(--space-12) 0;
+  padding: 0 var(--space-4);
+}
+
+.podium-card {
+  flex: 1;
+  max-width: 220px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-2);
+  transition: all var(--transition-normal);
+}
+
+.podium-card.first {
+  order: 2;
+  border-color: rgba(245, 158, 11, 0.5);
+  background: linear-gradient(180deg, rgba(245, 158, 11, 0.12) 0%, var(--bg-card) 100%);
+  transform: translateY(-16px);
+  box-shadow: 0 0 30px rgba(245, 158, 11, 0.2);
+}
+
+.podium-card.second {
+  order: 1;
+  border-color: rgba(148, 163, 184, 0.4);
+}
+
+.podium-card.third {
+  order: 3;
+  border-color: rgba(180, 83, 9, 0.4);
+}
+
+.podium-rank {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+/* ====================================================================
+   5. Profile Page
+   ==================================================================== */
+.profile-header-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  margin-bottom: var(--space-8);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-8);
+}
+
+.profile-meta h1 {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--space-1);
+}
+
+.profile-bio {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  max-width: 600px;
+}

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Play Arena — Banana Brain</title>
+  <meta name="description" content="Solve visual mathematical puzzles in real-time. Input your deduction to earn points and build streaks.">
+  
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="header">
+    <div class="container navbar">
+      <a href="/index.html" class="brand" id="brandLogo">
+        <span class="brand-icon">🍌</span>
+        <span>Banana<span class="brand-accent">Brain</span></span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="/index.html" class="nav-link">Home</a></li>
+          <li><a href="/game.html" class="nav-link active">Play Arena</a></li>
+          <li><a href="/leaderboard.html" class="nav-link">Leaderboard</a></li>
+          <li><a href="/profile.html" class="nav-link">Profile</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-auth" id="navAuthContainer">
+        <!-- Dynamically populated by ui.js -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Game Arena Main -->
+  <main class="main-content">
+    <div class="container game-container">
+      
+      <!-- HUD Bar -->
+      <section class="game-hud" aria-label="Player Status">
+        <div class="hud-item">
+          <span class="hud-icon">🏆</span>
+          <div class="hud-meta">
+            <span class="hud-label">Total Score</span>
+            <span class="hud-value banana-accent" id="hudScore">0</span>
+          </div>
+        </div>
+
+        <div class="hud-item">
+          <span class="hud-icon">🔥</span>
+          <div class="hud-meta">
+            <span class="hud-label">Current Streak</span>
+            <span class="hud-value" id="hudStreak">0 🔥</span>
+          </div>
+        </div>
+
+        <div class="hud-item">
+          <span class="hud-icon">🎯</span>
+          <div class="hud-meta">
+            <span class="hud-label">Accuracy</span>
+            <span class="hud-value" id="hudAccuracy">0%</span>
+          </div>
+        </div>
+
+        <div class="hud-item">
+          <span class="hud-icon">⏱️</span>
+          <div class="hud-meta">
+            <span class="hud-label">Time Remaining</span>
+            <span class="hud-value" id="timerText">3:00</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Timer Progress Bar -->
+      <div class="timer-bar-wrapper" role="progressbar" aria-valuemin="0" aria-valuemax="180">
+        <div class="timer-bar" id="timerBar"></div>
+      </div>
+
+      <!-- Puzzle Stage -->
+      <section class="puzzle-stage card-glass" aria-live="polite">
+        
+        <!-- Loading Skeleton -->
+        <div id="puzzleLoading" style="display: flex; flex-direction: column; align-items: center; gap: var(--space-4);">
+          <div class="spinner"></div>
+          <span style="color: var(--text-secondary); font-size: var(--font-size-sm);">
+            Fetching fresh mathematical equation from Banana API...
+          </span>
+        </div>
+
+        <!-- Error Recovery State -->
+        <div id="puzzleError" style="display: none; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center;">
+          <div style="font-size: 2.5rem;">⚠️</div>
+          <h3 id="errorMessage">Unable to connect to Banana API</h3>
+          <p style="max-width: 450px;">The external puzzle provider may be momentarily resting. Click below to retry.</p>
+          <button id="retryBtn" class="btn btn-primary">Try Again</button>
+        </div>
+
+        <!-- Rendered Live Puzzle Image -->
+        <div class="puzzle-image-wrapper">
+          <img 
+            id="puzzleImage" 
+            class="puzzle-image" 
+            src="" 
+            alt="Mathematical reasoning equation puzzle from Banana API" 
+            style="display: none;" 
+          />
+        </div>
+
+        <!-- Feedback & Reward Banner -->
+        <div id="feedbackBanner" class="feedback-banner">
+          <div style="display: flex; flex-direction: column; gap: var(--space-1);">
+            <div id="feedbackContent" class="feedback-content"></div>
+            <div id="feedbackDetails" style="font-size: var(--font-size-xs); opacity: 0.9;"></div>
+          </div>
+          <button id="nextBtn" class="btn btn-primary btn-sm">Next Puzzle ➔</button>
+        </div>
+
+      </section>
+
+      <!-- Answer Input & Interactive Numpad -->
+      <section class="answer-section">
+        <div class="answer-input-container">
+          <input 
+            type="number" 
+            id="answerInput" 
+            class="form-control answer-input" 
+            min="0" 
+            max="9" 
+            placeholder="?" 
+            aria-label="Your Numeric Deduction (0 to 9)" 
+            disabled 
+          />
+          <button id="submitBtn" class="btn btn-primary btn-lg" disabled>
+            Submit Answer
+          </button>
+        </div>
+
+        <!-- Interactive 0-9 Quick Touch Numpad -->
+        <div class="numpad-grid" aria-label="Quick Deduction Numpad">
+          <button type="button" class="numpad-btn" data-val="0">0</button>
+          <button type="button" class="numpad-btn" data-val="1">1</button>
+          <button type="button" class="numpad-btn" data-val="2">2</button>
+          <button type="button" class="numpad-btn" data-val="3">3</button>
+          <button type="button" class="numpad-btn" data-val="4">4</button>
+          <button type="button" class="numpad-btn" data-val="5">5</button>
+          <button type="button" class="numpad-btn" data-val="6">6</button>
+          <button type="button" class="numpad-btn" data-val="7">7</button>
+          <button type="button" class="numpad-btn" data-val="8">8</button>
+          <button type="button" class="numpad-btn" data-val="9">9</button>
+        </div>
+
+        <p style="font-size: var(--font-size-xs); color: var(--text-muted); text-align: center;">
+          💡 Pro-tip: Use your keyboard number keys (0-9) and hit <kbd style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;">Enter</kbd> to submit instantly.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>Banana Brain &copy; University of Bedfordshire</div>
+      <ul class="footer-links">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/leaderboard.html">Leaderboard</a></li>
+        <li><a href="/profile.html">Profile</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script type="module" src="/js/game.js"></script>
+</body>
+</html>

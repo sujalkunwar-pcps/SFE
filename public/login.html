@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In — Banana Brain</title>
+  <meta name="description" content="Log in to Banana Brain to play mathematical puzzles and track your score.">
+  
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="header">
+    <div class="container navbar">
+      <a href="/index.html" class="brand" id="brandLogo">
+        <span class="brand-icon">🍌</span>
+        <span>Banana<span class="brand-accent">Brain</span></span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="/index.html" class="nav-link">Home</a></li>
+          <li><a href="/game.html" class="nav-link">Play Arena</a></li>
+          <li><a href="/leaderboard.html" class="nav-link">Leaderboard</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-auth" id="navAuthContainer">
+        <a href="/register.html" class="btn btn-primary btn-sm">Register</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Login Form Arena -->
+  <main class="main-content">
+    <div class="container auth-wrapper">
+      <div class="card card-glass auth-card">
+        
+        <div class="auth-header">
+          <div style="font-size: 2.5rem; margin-bottom: var(--space-2);">🍌</div>
+          <h1>Welcome Back</h1>
+          <p>Enter your virtual identity credentials to resume training.</p>
+        </div>
+
+        <form id="loginForm" novalidate>
+          <div class="form-group">
+            <label for="identifier" class="form-label">Username or Email</label>
+            <input 
+              type="text" 
+              id="identifier" 
+              name="identifier" 
+              class="form-control" 
+              placeholder="e.g. demoplayer or demo@bedfordshire.ac.uk" 
+              required 
+              autocomplete="username"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password" class="form-label">Password</label>
+            <div class="password-wrapper">
+              <input 
+                type="password" 
+                id="password" 
+                name="password" 
+                class="form-control" 
+                placeholder="Enter your account password" 
+                required 
+                autocomplete="current-password"
+              />
+              <button type="button" class="password-toggle" aria-label="Show password">Show</button>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: var(--space-3);" id="loginSubmitBtn">
+            Log In
+          </button>
+        </form>
+
+        <div class="auth-footer">
+          Don't have a virtual identity yet? 
+          <a href="/register.html">Register here</a>
+        </div>
+
+        <!-- Demo credentials hint for tutor convenience -->
+        <div style="margin-top: var(--space-6); padding: var(--space-3); background: rgba(245, 158, 11, 0.08); border: 1px dashed rgba(245, 158, 11, 0.3); border-radius: var(--radius-md); font-size: var(--font-size-xs); text-align: center;">
+          <span style="font-weight: 700; color: var(--banana-400);">Demo Account:</span> demoplayer / Banana123!
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>Banana Brain &copy; University of Bedfordshire</div>
+      <ul class="footer-links">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/register.html">Register</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script type="module" src="/js/auth.js"></script>
+</body>
+</html>

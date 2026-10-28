@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Virtual Identity & Stats — Banana Brain</title>
+  <meta name="description" content="Manage your Banana Brain virtual identity, view accuracy analytics, and inspect historical puzzle attempts.">
+  
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="header">
+    <div class="container navbar">
+      <a href="/index.html" class="brand" id="brandLogo">
+        <span class="brand-icon">🍌</span>
+        <span>Banana<span class="brand-accent">Brain</span></span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="/index.html" class="nav-link">Home</a></li>
+          <li><a href="/game.html" class="nav-link">Play Arena</a></li>
+          <li><a href="/leaderboard.html" class="nav-link">Leaderboard</a></li>
+          <li><a href="/profile.html" class="nav-link active">Profile</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-auth" id="navAuthContainer"></div>
+    </div>
+  </header>
+
+  <!-- Profile Page Main Content -->
+  <main class="main-content">
+    <div class="container">
+      
+      <!-- Virtual Identity Card -->
+      <section class="profile-header-card card-glass">
+        <div class="avatar avatar-lg" id="profileAvatar" style="background-color: #F59E0B;">
+          ??
+        </div>
+
+        <div class="profile-meta" style="flex: 1;">
+          <h1 id="profileDisplayName">Player Name</h1>
+          <div style="display: flex; gap: var(--space-4); align-items: center; margin-bottom: var(--space-2);">
+            <span id="profileUsername" style="color: var(--banana-400); font-family: var(--font-mono); font-weight: 600;">@username</span>
+            <span id="profileCreatedAt" style="font-size: var(--font-size-xs); color: var(--text-muted);">Member</span>
+          </div>
+          <p id="profileBio" class="profile-bio">Loading bio...</p>
+        </div>
+
+        <div>
+          <button id="openEditModalBtn" class="btn btn-secondary">
+            <span>✏️ Edit Profile</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Player Statistics Overview -->
+      <section style="margin-bottom: var(--space-10);">
+        <h3 style="margin-bottom: var(--space-4);">Performance Metrics</h3>
+        <div class="grid-4" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+          
+          <div class="stat-card">
+            <span class="stat-label">Total Score</span>
+            <span class="stat-value highlight" id="statTotalScore">0</span>
+          </div>
+
+          <div class="stat-card">
+            <span class="stat-label">Accuracy</span>
+            <span class="stat-value" id="statAccuracy" style="color: var(--success);">0%</span>
+          </div>
+
+          <div class="stat-card">
+            <span class="stat-label">Current Streak</span>
+            <span class="stat-value" id="statCurrentStreak">0 🔥</span>
+          </div>
+
+          <div class="stat-card">
+            <span class="stat-label">Best Streak</span>
+            <span class="stat-value" id="statBestStreak">0 🔥</span>
+          </div>
+
+          <div class="stat-card">
+            <span class="stat-label">Puzzles Played</span>
+            <span class="stat-value" id="statGamesPlayed">0</span>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Historical Attempt Logs -->
+      <section>
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-4);">
+          <h3>Historical Game Attempts</h3>
+          <span style="font-size: var(--font-size-xs); color: var(--text-muted);">Most recent 25 challenges</span>
+        </div>
+
+        <div class="card card-glass" style="padding: 0; overflow: hidden;">
+          <div class="table-responsive">
+            <table class="table" aria-label="Game Attempts History">
+              <thead>
+                <tr>
+                  <th>Puzzle</th>
+                  <th>Outcome</th>
+                  <th>Submitted</th>
+                  <th>Solution</th>
+                  <th>Speed</th>
+                  <th>Time</th>
+                </tr>
+              </thead>
+              <tbody id="historyTbody">
+                <tr>
+                  <td colspan="6" style="text-align: center; padding: 2rem; color: var(--text-muted);">
+                    Loading challenge history...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Edit Profile Modal Dialog -->
+  <div id="editModal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); backdrop-filter: blur(4px); z-index: 1000; align-items: center; justify-content: center; padding: 1rem;">
+    <div class="card card-glass" style="width: 100%; max-width: 480px; position: relative;">
+      
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-4);">
+        <h3>Edit Virtual Identity</h3>
+        <button id="closeEditModalBtn" style="background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer;">&times;</button>
+      </div>
+
+      <form id="editProfileForm">
+        <div class="form-group">
+          <label for="editDisplayName" class="form-label">Display Name</label>
+          <input type="text" id="editDisplayName" class="form-control" maxlength="50" required />
+        </div>
+
+        <div class="form-group">
+          <label for="editBio" class="form-label">Bio / Tagline</label>
+          <textarea id="editBio" class="form-control" rows="3" maxlength="250" placeholder="Tell other players about your reasoning strategy..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Avatar Identity Color</label>
+          <div style="display: flex; gap: var(--space-3); margin-top: var(--space-1);">
+            <label style="cursor: pointer;">
+              <input type="radio" name="editAvatarColor" value="#F59E0B" checked style="display:none;" />
+              <span class="avatar" style="background: #F59E0B; border: 2px solid #FFF;">🟡</span>
+            </label>
+            <label style="cursor: pointer;">
+              <input type="radio" name="editAvatarColor" value="#3B82F6" style="display:none;" />
+              <span class="avatar" style="background: #3B82F6;">🔵</span>
+            </label>
+            <label style="cursor: pointer;">
+              <input type="radio" name="editAvatarColor" value="#10B981" style="display:none;" />
+              <span class="avatar" style="background: #10B981;">🟢</span>
+            </label>
+            <label style="cursor: pointer;">
+              <input type="radio" name="editAvatarColor" value="#8B5CF6" style="display:none;" />
+              <span class="avatar" style="background: #8B5CF6;">🟣</span>
+            </label>
+            <label style="cursor: pointer;">
+              <input type="radio" name="editAvatarColor" value="#EC4899" style="display:none;" />
+              <span class="avatar" style="background: #EC4899;">🌸</span>
+            </label>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: var(--space-3); margin-top: var(--space-6);">
+          <button type="button" id="cancelEditBtn" class="btn btn-secondary">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>Banana Brain &copy; University of Bedfordshire</div>
+      <ul class="footer-links">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/game.html">Play Arena</a></li>
+        <li><a href="/leaderboard.html">Leaderboard</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script type="module" src="/js/profile.js"></script>
+</body>
+</html>

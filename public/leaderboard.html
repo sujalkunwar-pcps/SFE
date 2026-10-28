@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Leaderboard — Banana Brain</title>
+  <meta name="description" content="View global rankings, scores, and streaks of top mathematical puzzle solvers.">
+  
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="header">
+    <div class="container navbar">
+      <a href="/index.html" class="brand" id="brandLogo">
+        <span class="brand-icon">🍌</span>
+        <span>Banana<span class="brand-accent">Brain</span></span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="/index.html" class="nav-link">Home</a></li>
+          <li><a href="/game.html" class="nav-link">Play Arena</a></li>
+          <li><a href="/leaderboard.html" class="nav-link active">Leaderboard</a></li>
+          <li><a href="/profile.html" class="nav-link">Profile</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-auth" id="navAuthContainer"></div>
+    </div>
+  </header>
+
+  <!-- Leaderboard Main Content -->
+  <main class="main-content">
+    <div class="container">
+      
+      <div style="text-align: center; margin-bottom: var(--space-8);">
+        <span class="badge badge-gold" style="margin-bottom: var(--space-3);">Global Hall of Fame</span>
+        <h1>Mathematical Reasoning Champions</h1>
+        <p style="max-width: 600px; margin: 0 auto;">
+          Rankings are calculated dynamically based on total score, best consecutive streaks, and verified puzzle deductions.
+        </p>
+      </div>
+
+      <!-- Top 3 Podium Cards -->
+      <section class="podium-container" id="podiumContainer" aria-label="Top 3 Ranked Players">
+        <!-- Rendered dynamically via leaderboard.js -->
+      </section>
+
+      <!-- Current User Ranking Highlight Card -->
+      <section id="userRankCard" style="display: none;"></section>
+
+      <!-- Global Ranking Table -->
+      <section class="card card-glass" style="padding: 0; overflow: hidden;">
+        <div class="table-responsive">
+          <table class="table" aria-label="Global Ranking Table">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Player</th>
+                <th>Total Score</th>
+                <th>Games Played</th>
+                <th>Accuracy</th>
+                <th>Best Streak</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboardBody">
+              <tr>
+                <td colspan="6" style="text-align: center; padding: 2rem; color: var(--text-muted);">
+                  Loading live leaderboard standings...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>Banana Brain &copy; University of Bedfordshire</div>
+      <ul class="footer-links">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/game.html">Play Arena</a></li>
+        <li><a href="/profile.html">Profile</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script type="module" src="/js/leaderboard.js"></script>
+</body>
+</html>
