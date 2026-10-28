@@ -417,19 +417,6 @@ npm test
 
 ---
 
-## 🎥 10-Minute Video Demonstration Guide
-
-| Timestamp | Topic | What to Show on Screen | Key Talking Points |
-|---|---|---|---|
-| **0:00–1:00** | **Working Application & Game Loop** | Show browser at `http://localhost:3000/`. Log in as `demoplayer`. Solve a live puzzle using the numpad. Point out the celebratory feedback, speed bonus, and score update. Click "Next Puzzle". | *"Banana Brain is a distributed challenge platform interoperating with Dr. Marc Conrad's Banana API. Scoring and validation are performed authoritatively on the server."* |
-| **1:00–3:00** | **Version Control & Architecture** | Open VS Code. Show modular layout (`public/`, `src/`, `tests/`). Run `git log --oneline -n 6` in terminal. Show `package.json` and dual-mode database adapter (`src/config/database.js`). | *"The architecture uses a 3-tier structure with separation of concerns. Vanilla frontend eliminates heavy bundlers; backend uses Express 5 with clean service and repository layers."* |
-| **3:00–5:00** | **Event-Driven Programming** | Open `public/js/event-bus.js` and `src/events/event-emitter.js`. Show terminal logs while solving a puzzle: show `[Event: challenge.started]` and `[Event: challenge.completed]`. | *"Events decouple application workflows. The frontend bus updates UI components without tight coupling. The backend EventEmitter triggers streak calculations and audit logging asynchronously."* |
-| **5:00–7:00** | **Interoperability & Banana API** | Open `src/services/banana-api.service.js`. Show endpoint URL and 301 redirect handling. Open browser DevTools Network tab during challenge fetch: **prove the `solution` is missing from the payload**. | *"Interoperability is demonstrated at two boundaries: RESTful HTTP with the browser, and external integration with Dr. Conrad's Banana API. The backend strips the answer to protect game integrity."* |
-| **7:00–9:00** | **Virtual Identity & Security** | Open `src/services/auth.service.js` (bcrypt 10 rounds). Show `src/app.js` (`HttpOnly`, `SameSite=Lax` cookies). Open `src/services/game.service.js` and show the Anti-IDOR (`challenge.user_id !== userId`) and duplicate check (`challenge.is_completed`). Show `/leaderboard.html` and `/profile.html`. | *"Virtual identity uses salted bcrypt password hashing and HttpOnly cookies immune to XSS theft. Session IDs rotate upon login to defeat fixation, and strict IDOR checks protect records."* |
-| **9:00–10:00** | **Evaluation & Test Verification** | Open terminal and run `npm test`. Show all 24 tests passing with 0 failures. Conclude with trade-off analysis (external dependency latency mitigated by timeout controls and fallback fixtures). | *"The system was verified with 24 automated tests across 5 suites. In critical evaluation, depending on a third-party microservice introduces potential latency, which we mitigated with 8s timeouts and resilient fallbacks."* |
-
----
-
 ## ⚖️ Academic Attribution & References
 
 - **Primary API Dependency:** Dr. Marc Conrad, University of Bedfordshire — *Banana Game API* ([Official Documentation](https://marcconrad.com/uob/banana/doc.php) | [API Endpoint](https://marcconrad.com/uob/banana/api.php?out=json)).
