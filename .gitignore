@@ -30,6 +30,8 @@ database/*
 !/TEACHER_DEMO_GUIDE.md
 !CODE_FLOW_EXPLAINED.md
 !/CODE_FLOW_EXPLAINED.md
+!CRITICAL_EVALUATION_RUBRIC.md
+!/CRITICAL_EVALUATION_RUBRIC.md
 docs/
 
 # Logs & Temporary Files
@@ -39,6 +41,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .system_generated/
+Tasks/
+*.zip
 
 # OS and Editor metadata
 .DS_Store
