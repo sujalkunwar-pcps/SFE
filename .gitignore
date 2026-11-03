@@ -32,6 +32,10 @@ database/*
 !/CODE_FLOW_EXPLAINED.md
 !CRITICAL_EVALUATION_RUBRIC.md
 !/CRITICAL_EVALUATION_RUBRIC.md
+!ASSIGNMENT_MARKING_GUIDE.md
+!/ASSIGNMENT_MARKING_GUIDE.md
+!MARKING_EVALUATION_AND_IMPROVEMENTS.md
+!/MARKING_EVALUATION_AND_IMPROVEMENTS.md
 docs/
 
 # Logs & Temporary Files
@@ -43,6 +47,7 @@ yarn-error.log*
 .system_generated/
 Tasks/
 *.zip
+*.pdf
 
 # OS and Editor metadata
 .DS_Store
