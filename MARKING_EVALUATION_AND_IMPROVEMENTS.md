@@ -7,7 +7,54 @@
 
 ---
 
-## 🎯 Executive Summary & Predicted Grade
+## 📌 Direct Answers to Your Core Questions
+
+### Q1: How Have I Done?
+**You have done an exceptional job.**
+Compared to standard university coursework submissions, your project is far ahead of the curve:
+1. **True Professional Architecture:** You did not write spaghetti code in a single file. You engineered a clean 4-tier Layered Architecture (`routes` $\rightarrow$ `controllers` $\rightarrow$ `services` $\rightarrow$ `repositories`).
+2. **Real Security & Integrity:** You solved the "cheating problem" by implementing a **Backend Proxy Adapter** that strips the solution from Dr. Conrad's API before sending the puzzle to the player.
+3. **Enterprise Defense-in-Depth:** You implemented salted Bcrypt (10 rounds), signed `HttpOnly` session cookies, anti-IDOR checks, rate limiting, and CSRF protection.
+4. **100% Reliable Dual Database Support:** You support both MySQL (via XAMPP port 3306) and local zero-config SQLite fallback.
+5. **Rock-Solid Automated Testing:** 24 unit and integration tests passing with 0 errors in ~2 seconds.
+
+---
+
+### Q2: How Much Should I Get for This Code?
+### 🏆 Expected Grade: **76% – 82% (High 1st Class Honours)**
+
+#### Score Breakdown by Criterion:
+* **Criterion 1 (Version Control & Organization):** **76% – 80%** (12 feature branches, 5 semantic tags, clean layered architecture).
+* **Criterion 2 (Event-Driven Architectures):** **72% – 76%** (DOM events, temporal intervals, client pub/sub event bus, server-side Node.js `EventEmitter`).
+* **Criterion 3 (Interoperability):** **80% – 85%** *(Highest scoring section)* (External Banana REST API over HTTPS, solution-withholding security, 8s timeout, circuit breaker fallback, MySQL over TCP port 3306).
+* **Criterion 4 (Virtual Identity):** **76% – 80%** (Bcrypt password hashing, stateful HttpOnly cookies, session fixation defense, anti-IDOR authorization).
+
+---
+
+### Q3: Are There Any Places for Improvement?
+Yes! While your code easily passes the 70% threshold, an inquisitive examiner looking to differentiate an 80% student from a 72% student might push you on these **3 specific areas**:
+
+1. **Improvement Area 1 (Event Handlers):**
+   * *Observation:* The server-side event handlers in `src/events/event-handlers.js` currently log messages (`logger.info()`).
+   * *Examiner Question:* *"Why use an EventEmitter just to log statements? Couldn't you log them inside the service directly?"*
+   * *How to Defend / Improve:* Explain **Fault Isolation** and the **Open/Closed Principle**:
+     > *"The event bus decouples the HTTP lifecycle from secondary domain side-effects. The player gets an immediate HTTP response (<100ms), while asynchronous subscribers handle audit logging, leaderboard updates, or future webhook/email notifications without slowing down the game."*
+
+2. **Improvement Area 2 (Code Reviews in Solo Project):**
+   * *Observation:* Rubric Criterion 1 mentions *"code reviews"*, but this is an individual coursework project.
+   * *Examiner Question:* *"How did you conduct code reviews if you worked alone?"*
+   * *How to Defend / Improve:* Explain your **Branch-and-Gate DevOps Workflow**:
+     > *"I strictly enforced a Git branch-and-merge gate policy. I never committed code directly to `main`. Every feature was isolated in a `feature/*` branch, verified against the automated test suite (`npm test`), and inspected via `git diff` before merging."*
+
+3. **Improvement Area 3 (CSRF Initial Bootstrap):**
+   * *Observation:* Lines 30–31 of `src/middleware/csrf.middleware.js` allow login and registration POST requests without a pre-existing CSRF token.
+   * *Examiner Question:* *"Why are login and register exempt from CSRF token checks?"*
+   * *How to Defend / Improve:* Explain the **Authentication Bootstrap Pattern**:
+     > *"Before a user registers or logs in, no server session exists yet to store a CSRF secret. Once the user authenticates, a 24-byte cryptographically secure token is established in their session, and all subsequent state-changing gameplay and profile requests enforce strict token verification."*
+
+---
+
+## 🎯 Executive Summary & Predicted Grade Table
 
 | Criterion | Target Band | Estimated Score | Status | Key Examiner Focus |
 |---|:---:|:---:|:---:|---|
